@@ -1,0 +1,28 @@
+<RCC>
+  <qresource prefix="newPrefix">
+    <file>white.jpg</file>
+    <file>add.png</file>
+    <file>delete.png</file>
+    <file>sky.jpg</file>
+    <file>soft.jpg</file>
+    <file>something.jpg</file>
+    <file>light.jpg</file>
+    <file>back.jpg</file>
+    <file>windows8.jpg</file>
+    <file>aqua-icon.png</file>
+    <file>maxresdefault.jpg</file>
+    <file>icon-cadastroClientes.png</file>
+    <file>pinto.png</file>
+    <file>kisspng-computer-icons-user-profile-avatar-jain-icon-5b332c5add9336-removebg-preview.png</file>
+    <file>imageedit_8_4079237319.png</file>
+    <file>register.png</file>
+    <file>kisspng-computer-icons-user-profile-avatar-jain-icon-5b332c5add9336.0201786915300803469076.jpg</file>
+    <file>46-463193_registration-icon-png-clipart.png</file>
+    <file>33715.png</file>
+    <file>imageedit_1_5136606968.png</file>
+    <file>226-2266148_transparent-refresh-icon-png-database-logo-transparent-png.png</file>
+    <file>226-2266148_transparent-refresh-icon-png-database-logo-transparent-png-removebg-preview.png</file>
+  </qresource>
+  <qresource prefix="newPrefix"/>
+  <qresource prefix="newPrefix"/>
+</RCC>

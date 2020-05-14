@@ -1,0 +1,14 @@
+<RCC>
+  <qresource prefix="newPrefix">
+    <file>peno.png</file>
+    <file>kjki.jpg</file>
+    <file>unnamed.png</file>
+    <file>newuser.png</file>
+    <file>oi\.png</file>
+    <file>regist.png</file>
+    <file>backback.jpeg</file>
+    <file>blur.jpg</file>
+    <file>black.jpg</file>
+    <file>mello.jpg</file>
+  </qresource>
+</RCC>
