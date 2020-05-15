@@ -2,12 +2,15 @@
 <ui version="4.0">
  <class>MainWindow</class>
  <widget class="QMainWindow" name="MainWindow">
+  <property name="enabled">
+   <bool>true</bool>
+  </property>
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>527</width>
-    <height>480</height>
+    <width>516</width>
+    <height>507</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -20,7 +23,7 @@
       <x>0</x>
       <y>0</y>
       <width>521</width>
-      <height>461</height>
+      <height>471</height>
      </rect>
     </property>
     <property name="currentIndex">
@@ -231,6 +234,30 @@
        </size>
       </property>
      </widget>
+     <widget class="QPushButton" name="pushButton_6">
+      <property name="geometry">
+       <rect>
+        <x>400</x>
+        <y>10</y>
+        <width>91</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Search User</string>
+      </property>
+      <property name="icon">
+       <iconset>
+        <normalon>:/newPrefix/search.png</normalon>
+       </iconset>
+      </property>
+      <property name="iconSize">
+       <size>
+        <width>20</width>
+        <height>20</height>
+       </size>
+      </property>
+     </widget>
      <zorder>label_6</zorder>
      <zorder>tableWidget</zorder>
      <zorder>pushButton_2</zorder>
@@ -238,10 +265,33 @@
      <zorder>pushButton_3</zorder>
      <zorder>pushButton_4</zorder>
      <zorder>pushButton_5</zorder>
+     <zorder>pushButton_6</zorder>
     </widget>
    </widget>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>516</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuAbou">
+    <property name="title">
+     <string>About</string>
+    </property>
+    <addaction name="actionSobre_o_Criador"/>
+   </widget>
+   <addaction name="menuAbou"/>
+  </widget>
+  <action name="actionSobre_o_Criador">
+   <property name="text">
+    <string>Sobre o Criador..</string>
+   </property>
+  </action>
  </widget>
  <resources>
   <include location="../medias/resource_interno/resource.qrc"/>

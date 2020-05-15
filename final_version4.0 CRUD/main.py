@@ -1,4 +1,4 @@
-from PyQt5 import uic, QtWidgets, QtGui#pip install PyQt5 
+from PyQt5 import uic, QtWidgets, QtGui #pip install PyQt5 
 from PyQt5.QtWidgets import QMainWindow, QApplication, QPushButton, QWidget, QTableWidget, QTableWidgetItem
 from PyQt5.QtWidgets import QMessageBox
 import sqlite3
@@ -19,7 +19,6 @@ conn.close()
 
 def captura_dados():
     global contador_deletados
-    global deletado
     rows = 0
     conn = sqlite3.connect('databases/banco.db')
     cursor = conn.cursor()
@@ -81,7 +80,8 @@ def atualiza_dados():
             tablewidget.setItem(row, column, QTableWidgetItem(str(item)))
     conn.close()
 
-
+def mostra_detalhes():
+    about.show()
 
 app2 = QtWidgets.QApplication([])
 aplication2 = QApplication
@@ -90,7 +90,8 @@ mainwindow2 = QMainWindow
 #Faz o load da interface de cadastro interno#
 web = uic.loadUi('ui_files/Interface_interna.ui')
 newwindow = uic.loadUi('ui_files/newwindow.ui')
-web.setFixedSize(521, 461)
+web.setFixedSize(521, 507)
+web.menuBar.triggered.connect(mostra_detalhes)
 newwindow.setFixedSize(307, 299)
 tablewidget = web.tableWidget
 tablewidget.setFixedSize(481, 281)
@@ -101,6 +102,13 @@ web2.setFixedSize(290, 325)
 ##########################
 delesp = uic.loadUi('ui_files/delete.ui')
 delesp.setFixedSize(189, 193)
+##########################
+search = uic.loadUi('ui_files/search.ui')
+##########################
+details = uic.loadUi('ui_files/details.ui')
+####3
+about = uic.loadUi('ui_files/about.ui')
+
 
 def cadastra_usuario():
     conn = sqlite3.connect('databases/login.db')
@@ -193,7 +201,6 @@ def mostra_delete():
 
 def deleta_especifico():
     global contador_deletados
-    global deletado
     rows = 0 
     usuario_deletado = delesp.lineEdit.text()
     conn = sqlite3.connect('databases/banco.db')
@@ -224,14 +231,33 @@ def deleta_especifico():
     else:
         QMessageBox.warning(QMessageBox(),'Erro','Id inexistente na base de dados!')
 
+def mostra_busca_usuario():
+    search.show()
+
+def busca_usuario():
+    try:
+        busca = search.lineEdit.text()
+        conn = sqlite3.connect('databases/banco.db')
+        c = conn.cursor()
+        exists = c.execute("SELECT * from usuarios WHERE id="+(busca))
+        details.show()
+        busca = exists.fetchone()
+        details.label_4.setText(busca[0])
+        details.label_5.setText(str(busca[1]))
+        details.label_6.setText(busca[2])
+    except:
+        QMessageBox.warning(QMessageBox(),'Erro','Algo deu ERRADO!')
 
 
 web2.pushButton.clicked.connect(cadastra_usuario)
 web2.pushButton_2.clicked.connect(loga_usuario)
+search.pushButton.clicked.connect(busca_usuario)
+web.pushButton_6.clicked.connect(mostra_busca_usuario)
 web.pushButton_3.clicked.connect(deleteProdutos)
 web.pushButton_4.clicked.connect(adiciona_usuario)
 web.pushButton_5.clicked.connect(mostra_delete)
 delesp.pushButton.clicked.connect(deleta_especifico)
 web2.setStyleSheet(open('css_file/style.css').read())
+search.setStyleSheet(open('css_file/style.css').read())
 web2.show()
 app2.exec()

@@ -1,5 +1,10 @@
 <RCC>
   <qresource prefix="newPrefix">
+    <file>nadfa.jpg</file>
+    <file>arrumando.jpg</file>
+    <file>penis333.jpg</file>
+    <file>WhatsApp Image 2020-05-14 at 19.11.47.jpeg</file>
+    <file>search.png</file>
     <file>white.jpg</file>
     <file>add.png</file>
     <file>delete.png</file>
