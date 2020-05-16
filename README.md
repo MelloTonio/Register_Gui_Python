@@ -29,5 +29,5 @@ Bibliotecas necessárias para rodar:
 
 ## Authors
 
-* **Antonio Mello**  - [Mello](https://github.com/MelloTonio)
+* **Antonio Mello Babo**  - [Mello](https://github.com/MelloTonio)
 
