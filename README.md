@@ -15,7 +15,7 @@ Bibliotecas necessárias para rodar:
 ```pip install Pyqt5-widgets```  
 
 
-### Design of the GUI
+### Design
 
 ![](images/interno.png)
   
