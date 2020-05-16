@@ -27,11 +27,11 @@
      <string notr="true"/>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="tab">
      <attribute name="icon">
-      <iconset resource="resources_login_externo/resource.qrc">
+      <iconset resource="../../../final_version4.0 CRUD/medias/resources_login_externo/resource.qrc">
        <normaloff>:/newPrefix/regist.png</normaloff>:/newPrefix/regist.png</iconset>
      </attribute>
      <attribute name="title">
@@ -53,7 +53,7 @@
        <string>Logar</string>
       </property>
       <property name="icon">
-       <iconset resource="resources_login_externo/resource.qrc">
+       <iconset resource="../../../final_version4.0 CRUD/medias/resources_login_externo/resource.qrc">
         <normaloff>:/newPrefix/unnamed.png</normaloff>:/newPrefix/unnamed.png</iconset>
       </property>
      </widget>
@@ -86,7 +86,7 @@
          <rect>
           <x>60</x>
           <y>110</y>
-          <width>71</width>
+          <width>61</width>
           <height>20</height>
          </rect>
         </property>
@@ -94,7 +94,7 @@
          <string notr="true"/>
         </property>
         <property name="text">
-         <string>  Usuário</string>
+         <string>Usuário</string>
         </property>
         <property name="readOnly">
          <bool>true</bool>
@@ -103,7 +103,7 @@
        <widget class="QLineEdit" name="lineEdit_21">
         <property name="geometry">
          <rect>
-          <x>70</x>
+          <x>60</x>
           <y>150</y>
           <width>61</width>
           <height>20</height>
@@ -113,7 +113,7 @@
          <string notr="true"/>
         </property>
         <property name="text">
-         <string>  Senha</string>
+         <string>Senha</string>
         </property>
         <property name="readOnly">
          <bool>true</bool>
@@ -148,7 +148,7 @@
          <string notr="true"/>
         </property>
         <property name="text">
-         <string>     Login</string>
+         <string>   Login</string>
         </property>
         <property name="frame">
          <bool>true</bool>
@@ -162,7 +162,7 @@
      <widget class="QLineEdit" name="lineEdit_11">
       <property name="geometry">
        <rect>
-        <x>140</x>
+        <x>130</x>
         <y>100</y>
         <width>113</width>
         <height>21</height>
@@ -175,7 +175,7 @@
      <widget class="QLineEdit" name="lineEdit_12">
       <property name="geometry">
        <rect>
-        <x>140</x>
+        <x>130</x>
         <y>140</y>
         <width>113</width>
         <height>21</height>
@@ -195,7 +195,7 @@
     </widget>
     <widget class="QWidget" name="tab_2">
      <attribute name="icon">
-      <iconset resource="resources_login_externo/resource.qrc">
+      <iconset resource="../../../final_version4.0 CRUD/medias/resources_login_externo/resource.qrc">
        <normaloff>:/newPrefix/peno.png</normaloff>:/newPrefix/peno.png</iconset>
      </attribute>
      <attribute name="title">
@@ -262,7 +262,7 @@
        <string>Cadastrar</string>
       </property>
       <property name="icon">
-       <iconset resource="resources_login_externo/resource.qrc">
+       <iconset resource="../../../final_version4.0 CRUD/medias/resources_login_externo/resource.qrc">
         <normaloff>:/newPrefix/newuser.png</normaloff>:/newPrefix/newuser.png</iconset>
       </property>
      </widget>
@@ -283,7 +283,7 @@
         <rect>
          <x>60</x>
          <y>20</y>
-         <width>191</width>
+         <width>181</width>
          <height>51</height>
         </rect>
        </property>
@@ -301,7 +301,7 @@
         <string notr="true"/>
        </property>
        <property name="text">
-        <string>   Cadastro</string>
+        <string> Cadastro</string>
        </property>
        <property name="frame">
         <bool>false</bool>
@@ -315,7 +315,7 @@
         <rect>
          <x>60</x>
          <y>100</y>
-         <width>71</width>
+         <width>61</width>
          <height>20</height>
         </rect>
        </property>
@@ -323,7 +323,7 @@
         <string notr="true">background-color: rgb(0, 0, 68);</string>
        </property>
        <property name="text">
-        <string>  Usuário</string>
+        <string>Usuário</string>
        </property>
        <property name="readOnly">
         <bool>true</bool>
@@ -332,14 +332,14 @@
       <widget class="QLineEdit" name="lineEdit_8">
        <property name="geometry">
         <rect>
-         <x>70</x>
+         <x>60</x>
          <y>140</y>
          <width>61</width>
          <height>20</height>
         </rect>
        </property>
        <property name="text">
-        <string>  Senha</string>
+        <string>Senha</string>
        </property>
        <property name="readOnly">
         <bool>true</bool>
@@ -348,9 +348,9 @@
       <widget class="QLineEdit" name="lineEdit_9">
        <property name="geometry">
         <rect>
-         <x>20</x>
+         <x>40</x>
          <y>180</y>
-         <width>111</width>
+         <width>81</width>
          <height>20</height>
         </rect>
        </property>
@@ -373,7 +373,7 @@
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
  <resources>
-  <include location="resources_login_externo/resource.qrc"/>
+  <include location="../../../final_version4.0 CRUD/medias/resources_login_externo/resource.qrc"/>
  </resources>
  <connections/>
 </ui>

@@ -10,7 +10,7 @@
     <x>0</x>
     <y>0</y>
     <width>516</width>
-    <height>507</height>
+    <height>517</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -237,14 +237,14 @@
      <widget class="QPushButton" name="pushButton_6">
       <property name="geometry">
        <rect>
-        <x>400</x>
+        <x>410</x>
         <y>10</y>
         <width>91</width>
         <height>21</height>
        </rect>
       </property>
       <property name="text">
-       <string>Search User</string>
+       <string>Search / Edit</string>
       </property>
       <property name="icon">
        <iconset>

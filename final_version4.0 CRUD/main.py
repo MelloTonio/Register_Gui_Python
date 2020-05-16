@@ -6,9 +6,11 @@ import time
 from converted_medias import resources
 from converted_medias import resources2
 from validate_email import validate_email
-
-
 from time import sleep
+
+
+
+#Inicializa o contador de deletados para evitar futuros erros
 conn = sqlite3.connect('databases/banco.db')
 cursor = conn.cursor()
 cursor.execute('''SELECT * FROM contador_deletados''')
@@ -17,6 +19,7 @@ for row, form in enumerate(cursor):
 name = ''
 conn.close()
 
+#Insere Usuários no DB e atualiza os ids quando necessário
 def captura_dados():
     global contador_deletados
     rows = 0
@@ -69,7 +72,7 @@ def captura_dados():
         QMessageBox.warning(QMessageBox(),'Informação Inválida','Idade inválida')
 
 
-
+#Da um refresh no DB e passa para a TableWidget com todas informações
 def atualiza_dados():
     conn = sqlite3.connect('databases/banco.db')
     cursor = conn.cursor()
@@ -83,33 +86,7 @@ def atualiza_dados():
 def mostra_detalhes():
     about.show()
 
-app2 = QtWidgets.QApplication([])
-aplication2 = QApplication
-mainwindow2 = QMainWindow
-##########################
-#Faz o load da interface de cadastro interno#
-web = uic.loadUi('ui_files/Interface_interna.ui')
-newwindow = uic.loadUi('ui_files/newwindow.ui')
-web.setFixedSize(521, 507)
-web.menuBar.triggered.connect(mostra_detalhes)
-newwindow.setFixedSize(307, 299)
-tablewidget = web.tableWidget
-tablewidget.setFixedSize(481, 281)
-##########################
-#Faz o load da interface de login externo#
-web2 = uic.loadUi('ui_files/Interface_externa.ui')
-web2.setFixedSize(290, 325)
-##########################
-delesp = uic.loadUi('ui_files/delete.ui')
-delesp.setFixedSize(189, 193)
-##########################
-search = uic.loadUi('ui_files/search.ui')
-##########################
-details = uic.loadUi('ui_files/details.ui')
-####3
-about = uic.loadUi('ui_files/about.ui')
-
-
+#Cadastra usuarios na interface externa
 def cadastra_usuario():
     conn = sqlite3.connect('databases/login.db')
     cursor = conn.cursor()
@@ -133,6 +110,7 @@ def cadastra_usuario():
         conn.commit()
         conn.close()
 
+#Loga o usuário da interface externa para interna
 def loga_usuario():
     usuario = web2.lineEdit_11.text()
     senha = web2.lineEdit_12.text()
@@ -153,14 +131,13 @@ def loga_usuario():
         QMessageBox.warning(QMessageBox(),'Erro','Registro não encontrados na base de dados!')
         conn.close()
 
+#Maneja ações da interface interna
 def nova_aba(ok,name):
     web2.close()
     web.lineEdit_4.setText(f'Bem vindo {name.capitalize()}...')
     conn = sqlite3.connect('databases/banco.db')
     cursor = conn.cursor()
     web.show()
-    #################################
-    #Cria colunas e linhas baseado em quantos usuarios temos na tabela.
     cursor.execute("""
     SELECT * FROM usuarios;
     """)
@@ -176,7 +153,8 @@ def nova_aba(ok,name):
 def adiciona_usuario():
     newwindow.show()
 
-def deleteProdutos():
+#Deleta todos Usuários do banco de dados
+def deleteAll():
     global contador_deletados
     button = QMessageBox.question(QMessageBox(),'AVISO','Tem certeza que deseja apagar todos os dados?',QMessageBox.Yes | QMessageBox.No)
     if button == QMessageBox.Yes:    
@@ -198,11 +176,11 @@ def deleteProdutos():
 def mostra_delete():
     delesp.show()
 
-
+#Deleta um Usuário específico pelo seu ID
 def deleta_especifico():
     global contador_deletados
     rows = 0 
-    usuario_deletado = delesp.lineEdit.text()
+    usuario_deletado = delesp.spinBox.text()
     conn = sqlite3.connect('databases/banco.db')
     c = conn.cursor()
     exists = c.execute("SELECT * from usuarios WHERE id="+(usuario_deletado))
@@ -234,30 +212,109 @@ def deleta_especifico():
 def mostra_busca_usuario():
     search.show()
 
+idglobal = 0
+
+#Busca um Usuário específico pelo seu ID
 def busca_usuario():
+    global idglobal
     try:
-        busca = search.lineEdit.text()
+        busca = search.spinBox.text()
         conn = sqlite3.connect('databases/banco.db')
         c = conn.cursor()
         exists = c.execute("SELECT * from usuarios WHERE id="+(busca))
-        details.show()
+        idglobal = busca
         busca = exists.fetchone()
-        details.label_4.setText(busca[0])
-        details.label_5.setText(str(busca[1]))
-        details.label_6.setText(busca[2])
+        details.show()
+        details.lineEdit.setText(busca[0])
+        details.lineEdit_2.setText(str(busca[1]))
+        details.lineEdit_3.setText(busca[2])
+        conn.close()
     except:
-        QMessageBox.warning(QMessageBox(),'Erro','Algo deu ERRADO!')
+        details.lineEdit.setText('')
+        details.lineEdit_2.setText('')
+        details.lineEdit_3.setText('')
+        QMessageBox.warning(QMessageBox(),'Erro','Usuário não encontrado!')
+        details.close()
+
+#Altera informações de um Usuário específico pelo seu ID
+def altera_especifico():
+    global idglobal
+    nome = details.lineEdit.text()
+    idade = details.lineEdit_2.text()
+    email = details.lineEdit_3.text()
+    try:
+        x = int(idade)
+        if validate_email(email,verify=True):
+            conn2 = sqlite3.connect('databases/banco.db')
+            cursor = conn2.cursor()
+            conjunto = [nome,idade,email,idglobal]
+            cursor.execute("UPDATE usuarios SET (nome,idade,email) = (?,?,?) where id=?",conjunto)
+            conn2.commit()
+    except:
+        QMessageBox.warning(QMessageBox(),'Erro','Idade inválida!')
+
+#Inicialização do App
+app = QtWidgets.QApplication([])
+
+#Interface com informações sobre o Dev.
+about = uic.loadUi('ui_files/about.ui')
+about.setStyleSheet(open('css_file/style.css').read())
+about.setFixedSize(262, 396)
+#---------------------------------------------------#
+#Interface para adicionar Usuários
+newwindow = uic.loadUi('ui_files/newwindow.ui')
+newwindow.setFixedSize(307, 299)
+#---------------------------------------------------#
 
 
+#---------------------------------------------------#
+#Interface Externa(Login) - Apenas Login e Cadastro
+web2 = uic.loadUi('ui_files/Interface_externa.ui')
+web2.setFixedSize(290, 325)
 web2.pushButton.clicked.connect(cadastra_usuario)
 web2.pushButton_2.clicked.connect(loga_usuario)
-search.pushButton.clicked.connect(busca_usuario)
+web2.setStyleSheet(open('css_file/style.css').read())
+#---------------------------------------------------#
+
+
+#---------------------------------------------------#
+#Interface Interna - Deleta Usuários/Busca Usuários/Adiciona Usuários
+#                    Altera Usuários
+web = uic.loadUi('ui_files/Interface_interna.ui')
+web.setFixedSize(521, 507)
+web.menuBar.triggered.connect(mostra_detalhes)
+
 web.pushButton_6.clicked.connect(mostra_busca_usuario)
-web.pushButton_3.clicked.connect(deleteProdutos)
+web.pushButton_3.clicked.connect(deleteAll)
 web.pushButton_4.clicked.connect(adiciona_usuario)
 web.pushButton_5.clicked.connect(mostra_delete)
+
+tablewidget = web.tableWidget
+tablewidget.setFixedSize(481, 281)
+#---------------------------------------------------#
+
+
+#---------------------------------------------------#
+#Função que deleta um Usuário em especifico pelo seu ID
+delesp = uic.loadUi('ui_files/delete.ui')
 delesp.pushButton.clicked.connect(deleta_especifico)
-web2.setStyleSheet(open('css_file/style.css').read())
-search.setStyleSheet(open('css_file/style.css').read())
+delesp.setFixedSize(189, 193)
+#---------------------------------------------------#
+
+
+#--------------------------------------------------#
+#Interface ''Dados sobre o Usuário'' - Indica o Nome,idade e email do Usuário
+details = uic.loadUi('ui_files/details.ui')
+details.pushButton.clicked.connect(altera_especifico)
+#---------------------------------------------------#
+
+
+#---------------------------------------------------#
+#Interface de ''Busca'' - Busca Usuários no banco de dados
+search = uic.loadUi('ui_files/search.ui')
+search.setFixedSize(225, 182)
+search.pushButton.clicked.connect(busca_usuario)
+#---------------------------------------------------#
+
 web2.show()
-app2.exec()
+app.exec()
