@@ -40,18 +40,14 @@ def captura_dados():
                 VALUES (?,?,?)
                 """,lista)
                 conn.commit()
-                conn.close()
                 lista = []
                 QMessageBox.information(QMessageBox(),'Sucesso!','Usuário cadastrado com sucesso no banco de dados')
                 newwindow.lineEdit_2.setText('')
                 newwindow.lineEdit_3.setText('')
-                conn = sqlite3.connect('databases/banco.db')
-                cursor = conn.cursor()
                 cursor.execute('''SELECT * FROM usuarios''')
                 for row, form in enumerate(cursor):
                     rows += 1
                 tablewidget.setRowCount(rows)
-                cursor = conn.cursor()
                 cursor.execute('''SELECT * FROM contador_deletados''')
                 for row, form in enumerate(cursor):
                     contador_deletados = (form[0])
@@ -193,14 +189,12 @@ def deleta_especifico():
         c.execute("Update or Ignore usuarios set id = id-1 where id > 1")
         conn.commit()
         deletado = True
-        conn2 = sqlite3.connect('databases/banco.db')
-        cursor = conn2.cursor()
-        cursor.execute("UPDATE contador_deletados SET deletados = deletados + 1")
-        for row, form in enumerate(cursor):
+        c.execute("UPDATE contador_deletados SET deletados = deletados + 1")
+        for row, form in enumerate(c):
             contador_deletados = (form[0])
-        conn2.commit()
-        cursor.execute('''SELECT * FROM usuarios''')
-        for row, form in enumerate(cursor):
+        conn.commit()
+        c.execute('''SELECT * FROM usuarios''')
+        for row, form in enumerate(c):
             rows += 1
         tablewidget.setRowCount(rows)
         atualiza_dados()
@@ -234,6 +228,7 @@ def busca_usuario():
         details.lineEdit_2.setText('')
         details.lineEdit_3.setText('')
         QMessageBox.warning(QMessageBox(),'Erro','Usuário não encontrado!')
+        conn.close()
         details.close()
 
 #Altera informações de um Usuário específico pelo seu ID
