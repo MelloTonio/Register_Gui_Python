@@ -1,14 +1,14 @@
 <h1 align="center">Simple CRUD in Sqlite - Python</h1>
 <p align="center"><i>Small python project that allows you to perform a CRUD on an SQLite database through a graphical interface</i></p>
 
-### Prerequisites
+## Prerequisites
 
 Required Libraries:
 * Pyqt5 🡪 ```pip install Pyqt5``` 
 * validate_email 🡪 ```pip install validate_email``` 
 * Pyqt5-widgets 🡪 ```pip install Pyqt5-widgets```
  
-### Design
+## Design
 
 ![](images/interno.png)
   
