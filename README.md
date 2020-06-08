@@ -3,16 +3,11 @@
 
 ### Prerequisites
 
-Bibliotecas necessárias para rodar:
-* Pyqt5 
-* validate_email
-* Pyqt5-widgets
-
- ```pip install Pyqt5```  
-```pip install validate_email```  
-```pip install Pyqt5-widgets```  
-
-
+Required Libraries:
+* Pyqt5 🡪 ```pip install Pyqt5``` 
+* validate_email 🡪 ```pip install validate_email``` 
+* Pyqt5-widgets 🡪 ```pip install Pyqt5-widgets```
+ 
 ### Design
 
 ![](images/interno.png)
