@@ -1,7 +1,5 @@
-# Simple CRUD in Sqlite - Python
-
-Pequeno Projeto de interface gráfica que permite adicionar,remover,alterar e visualizar usuários e informações dentro de um
-banco de dados
+<h1 align="center">Simple CRUD in Sqlite - Python</h1>
+<p align="center"><i>Small python project that allows you to perform a CRUD on an SQLite database through a graphical interface</i></p>
 
 ### Prerequisites
 
